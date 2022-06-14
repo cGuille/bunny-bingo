@@ -51,25 +51,27 @@ class GridMaker {
     }
 
     setUp(options) {
+        const gridSize = Math.floor(Math.sqrt(options.items.length));
+
         let state = this.stateStorage.load();
 
         if (!state) {
             state = {
-                selectedItems: this.selectItems(options).map(text => ({ text: text, crossed: false })),
+                selectedItems: this.selectItems(options.items, gridSize).map(text => ({ text: text, crossed: false })),
             };
 
             this.stateStorage.save(state);
         }
 
-        this.container.style.setProperty('--grid-size', options.size);
+        this.container.style.setProperty('--grid-size', gridSize);
 
         state.selectedItems
             .map(item => this.createGridItemElt(item))
             .forEach(elt => this.container.appendChild(elt));
     }
 
-    selectItems(options) {
-        return pickRandomItems(options.items, options.size * options.size);
+    selectItems(items, gridSize) {
+        return pickRandomItems(items, gridSize * gridSize);
     }
 
     createGridItemElt(item) {

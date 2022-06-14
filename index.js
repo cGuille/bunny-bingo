@@ -7,10 +7,7 @@ function main() {
 class CreationHandler {
     constructor(formElt) {
         this.form = formElt;
-        this.input = {
-            size: formElt.querySelector('#size'),
-            gridItems: formElt.querySelector('#grid-items'),
-        };
+        this.gridItemsInput = formElt.querySelector('#grid-items');
     }
 
     setUp() {
@@ -22,15 +19,8 @@ class CreationHandler {
 
         const gridOptions = {
             version: 1,
-            size: parseInt(this.input.size.value, 10),
-            items: this.parseItems(this.input.gridItems.value),
+            items: this.parseItems(this.gridItemsInput.value),
         };
-
-        const requiredItems = gridOptions.size * gridOptions.size;
-
-        if (gridOptions.items.length < requiredItems) {
-            throw new Error(`Grid of size ${gridOptions.size} requires at least ${requiredItems}; only ${gridOptions.items.length} provided`);
-        }
 
         window.location.assign(`/grid.html?opts=${encodeURIComponent(this.serialiseOpts(gridOptions))}`);
     }
