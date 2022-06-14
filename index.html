@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+
+    <title>The Bunny's Bingo</title>
+    <link rel="stylesheet" href="index.css" />
+</head>
+
+<body>
+    <form id="bingo-form">
+        <p>
+            <label for="size">Grid size:</label>
+            <input type="number" id="size" name="size" value="5" min="2" max="10" required />
+        </p>
+        <p>
+            <label for="grid-items">Write down the items that may appear in the grid, 1 per line.</label>
+            <br />
+            <textarea name="grid-items" id="grid-items" style="min-width: 50%"></textarea>
+        </p>
+        <p>
+            <button type="submit">Create grid!</button>
+        </p>
+    </form>
+    <script src="index.js"></script>
+</body>
+
+</html>
